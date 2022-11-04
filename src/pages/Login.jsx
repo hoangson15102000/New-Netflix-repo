@@ -16,11 +16,11 @@ const Login = () => {
     try {
       await logIn(email, password);
       // console.log("success");
-      // navigate("/");
+      navigate("/");
     } catch (error) {
       console.log(error);
-      console.log("áas");
-      // setError(error.message);
+
+      setError(error.message);
       // console.log("fail");
     }
   };

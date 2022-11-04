@@ -1,26 +1,34 @@
 import { createContext, useContext, useEffect, useState } from "react";
 // import Authentication từ firebase
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged
 } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
 const AuthContext = createContext();
-export const AuthContextProvider = ({ children }) => {
+export function AuthContextProvider({ children }) {
     const [user, setUser] = useState({});
     // Đăng ký nhận vào email password return gọi lại hàm
     // createUserWithEmailAndPassword nhận vào auth ,email,password
-    const signUp = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
+    function signUp(email, password) {
+        createUserWithEmailAndPassword(auth, email, password);
+        // Luư dữ liệu vào firebase cloud
+        setDoc(doc(db, 'users', email), {
+            savedShows: []
+        })
     }
+
     // Đăng nhập , tương tự đăng ký phải nhập vào
     // input email và password sau đó authentication true thì 
     // đăng nhập thành công
-    const logIn = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password)
+    function logIn(email, password) {
+        signInWithEmailAndPassword(auth, email, password);
     }
+
+
     // Đăng xuất, nhận vào mã authentication là đủ
 
     function logOut() {

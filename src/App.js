@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Account from "./pages/Account";
 import { Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from "./context/AuthContext";
+import ProtectAccount from "./components/ProtectAccount";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path='/signup' element={<Signup />} />
 
 
-          <Route path='/account' element={<Account />} />
+          <Route path='/account' element={<ProtectAccount><Account /></ProtectAccount>} />
 
         </Routes>
       </AuthContextProvider>
