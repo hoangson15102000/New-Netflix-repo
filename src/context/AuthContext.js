@@ -16,6 +16,7 @@ export function AuthContextProvider({ children }) {
     function signUp(email, password) {
         createUserWithEmailAndPassword(auth, email, password);
         // Luư dữ liệu vào firebase cloud
+        // 2 tham so la tai lieu tham chieu doc() va du lieu tham chieu objects
         setDoc(doc(db, 'users', email), {
             savedShows: []
         })
