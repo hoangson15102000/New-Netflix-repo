@@ -29,6 +29,7 @@ const Main = () => {
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           alt={movie?.title}
         />
+        <span></span>
         <div className="absolute top-[20%] w-full p-4 md:p-8">
           <h1 className="text-3xl md:text-5xl mb-2 font-bold">
             {movie?.title}
